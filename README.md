@@ -4,7 +4,8 @@
 * 提供疾病症状、疾病用药、药品查询等功能。
 * 知识库未覆盖的问题自动由 DeepSeek 大模型兜底回答。
 * 支持多轮对话，对话历史通过 Django Session 持久化。
-
+* demo演示
+![alt text](index.png)
 # 需要环境
 * Python 3.6+开发环境
     * 安装jieba中文分词组件
