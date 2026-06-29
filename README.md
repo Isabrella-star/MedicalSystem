@@ -2,9 +2,11 @@
 * 原文参考：https://github.com/YeYzheng/KGQA-Based-On-medicine?tab=readme-ov-file
 * 这是一个基于Python模块REfO实现的知识库问答初级系统. 该问答系统可以解析输入的自然语言问句生成 SPARQL 查询，进一步请求后台基于TDB知识库的Apache Jena Fuseki 服务, 进而得到问题的结果。
 * 提供疾病症状、疾病用药、药品查询等功能。
+* 知识库未覆盖的问题自动由 DeepSeek 大模型兜底回答。
+* 支持多轮对话，对话历史通过 Django Session 持久化。
 
 # 需要环境
-* python3.5.2开发环境
+* Python 3.6+开发环境
     * 安装jieba中文分词组件
     * 安装sparqlwrapper，python与Apache Jena Fuseki服务的交互组件
     * Django，Web应用框架，用于交互展示
@@ -16,13 +18,15 @@
 
 # 怎么运行
 * 下载TDB药品疾病知识库数据 & clone项目代码
+*  配置 DeepSeek API Key
+    *   编辑 kgqa/utils/llm.py，将 DEEPSEEK_API_KEY 替换为你的真实 Key
 * 开启Apache Jena Fuseki 服务
-    *  将TDB数据和Apache Jena Fuseki放在同一个目录下。
-    *  进入Apache Jena Fuseki文件夹，运行fuseki-server.bat，然后退出。程序为我们在当前目录自动创建“run”文件夹
-    *  将项目代码apache_configuration文件夹下的kgdrug.tll和rules.tll文件移动到“run”文件夹下。
+    *  将TDB数据和apache-jena-fuseki-5.6.0放在同一个目录下。
+    *  进入Fuseki文件夹，运行fuseki-server.bat，然后退出。程序为我们在当前目录自动创建“run”文件夹
+    *  将项目代码configuration文件夹下的kgdrug.tll和rules.tll文件移动到“run”文件夹下。
         * kgdrug.tll：知识库本体文件
         * rules.tll：规则推理配置文件
-    * 将项目代码apache_configuration文件夹下的fuseki_conf.ttl文件移动到“run”文件夹下。
+    * 将项目代码configuration文件夹下的fuseki_conf.ttl文件移动到“run”文件夹下。
         * fuseki_conf.ttl：Fuseki配置文件，主要配置上述两个文件的路径和TDB知识库路径
     * 上述操作配置好后，再次运行fuseki-server.bat，开启Apache Jena Fuseki 服务
 * 安装python环境需要的包
@@ -50,9 +54,9 @@ python manage.py runserver
 [28/Oct/2025 17:08:49] "GET / HTTP/1.1" 404 2069）
 
 # 项目不足
-* 只支持一问一答式的对话。
-* 只支持查询知识库有的数据，知识库不包含的数据则查询不到。
-* 页面UI设计交简陋
+* LLM 调用是同步的，等待期间页面无响应提示。
+* 知识图谱问答依赖 Apache Jena Fuseki 服务，需额外部署。
+* 不支持图片、文件等多媒体输入。
 
 # 后期更新
 * 加入药品、疾病的同义词，增加系统的鲁棒性
