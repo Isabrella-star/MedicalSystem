@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Microsoft Yahei", sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部标题栏 */
+.chat-header {
+  text-align: center;
+  background: #1677ff;
+  color: white;
+  padding: 16px 24px;
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 对话容器 */
+.chat-wrap {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* 单条消息容器 */
+.msg-item {
+  display: flex;
+  margin-bottom: 18px;
+}
+
+/* 用户消息靠右 */
+.msg-user {
+  justify-content: flex-end;
+}
+
+/* 系统消息靠左 */
+.msg-system {
+  justify-content: flex-start;
+}
+
+/* 消息气泡 */
+.msg-bubble {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  position: relative;
+}
+
+/* 用户气泡样式 */
+.msg-user .msg-bubble {
+  background: #1677ff;
+  color: #fff;
+}
+
+/* 系统气泡样式 */
+.msg-system .msg-bubble {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #333;
+}
+
+/* 来源标签（右下角） */
+.source-tag {
+  display: block;
+  margin-top: 8px;
+  text-align: right;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.tag-knowledge {
+  background: #52c41a;
+  color: #fff;
+}
+
+.tag-ai {
+  background: #1677ff;
+  color: #fff;
+}
+
+/* 底部输入区域 */
+.chat-input-area {
+  display: flex;
+  gap: 10px;
+  padding: 16px 20px;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+}
+
+#inputText {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+#inputText:focus {
+  border-color: #1677ff;
+}
+
+#sendBtn {
+  padding: 0 24px;
+  background: #1677ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#sendBtn:hover {
+  background: #0958d9;
+}
+
+#sendBtn:disabled {
+  background: #b0c4de;
+  cursor: not-allowed;
+}
+
+.chat-header h3 {
+  margin-bottom: 16px;
+}
+
+marquee {
+  margin-top: 5px;
+}
+
+marquee span {
+  display: inline-block;
+  padding: 5px;
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 0.4);
+  line-height: 30px;
+  border-radius: 15px;
+}
+
+/* 清空按钮区域 */
+.clear-area {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px 8px;
+  background: #fff;
+}
+
+#clearBtn {
+  color: #e74c3c;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+#clearBtn:hover {
+  background: #fde8e8;
+}
+
+/* 确认弹窗 */
+#confirmModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#confirmModal .modal-content {
+  background: #fff;
+  padding: 28px 32px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+#confirmModal p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+#confirmModal button {
+  margin: 0 10px;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#confirmYes {
+  background: #e74c3c;
+  color: #fff;
+}
+
+#confirmYes:hover {
+  background: #c0392b;
+}
+
+#confirmNo {
+  background: #ddd;
+  color: #333;
+}
+
+#confirmNo:hover {
+  background: #ccc;
+}
+
+/* 欢迎提示 */
+.welcome-msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  color: #999;
+  font-size: 16px;
+}
